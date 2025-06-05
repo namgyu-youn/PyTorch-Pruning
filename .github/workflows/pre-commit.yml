@@ -1,0 +1,26 @@
+name: pre-commit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pre-commit-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@v1
+        with:
+          python-version: "3.12"
+          enable-cache: true # Speeds up subsequent runs
+
+      - name: Install pre-commit
+        run: |
+          uv venv
+          uv pip install pre-commit
+
+      - name: Run pre-commit
+        run: pre-commit run --all-files

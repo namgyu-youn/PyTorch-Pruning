@@ -1,0 +1,18 @@
+# Cache files
+*.pyc
+*.exe
+*.log
+*__pycache__
+*.egg-info
+.pytest_cache
+model_cache
+
+# Environment
+env
+.env
+*.lock
+
+# Ruff
+-unsafe-fixes
+.ruff_cache
+.coverage
