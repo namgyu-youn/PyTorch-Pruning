@@ -1,6 +1,6 @@
 # PyTorch-Pruning
 
-This project aims to **compare variable pruning** techniques for Vision Transformer (ViT) model. For deepen understanding, pytorch-pruning uses multiple-metrics (accuracy & latency), [torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html), etc.
+This project aims to **compare variable pruning** techniques for PyTorch based models. For deepen understanding, we uses multiple-metrics (accuracy & latency), [torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html), etc.
 
 ## References
 
