@@ -2,6 +2,8 @@
 
 This project aims to **compare variable pruning** techniques for PyTorch based models. For deepen understanding, we uses multiple-metrics (accuracy & latency), [torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html), etc.
 
+![pruning_taxonomy](images/pruning_taxonomy.png)
+
 ## References
 
 [1] TinyML and Efficient Deep Learning Computing (MIT-6.5940, [Lecture](https://hanlab.mit.edu/courses/2024-fall-65940))
@@ -21,3 +23,5 @@ This project aims to **compare variable pruning** techniques for PyTorch based m
 [8] A Simple and Effective Pruning Approach for Large Language Models (ICLR'24, [arXiv](https://arxiv.org/abs/2306.11695))
 
 [9] How to Quantize Transformer-based model for TensorRT Deployment ([SqueezeBits - Blog](https://blog.squeezebits.com/how-to-quantize-transformerbased-model-for-tensorrt-deployment-55802))
+
+[10] Ten Lessons We Have Learned in the New "Sparseland": A Short Handbook for Sparse Neural Network Researchers (ICLR'25, [arXiv](https://arxiv.org/abs/2302.02596))
