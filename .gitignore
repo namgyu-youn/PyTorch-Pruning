@@ -7,6 +7,9 @@
 .pytest_cache
 model_cache
 
+# Data
+data/
+
 # Environment
 env
 .env

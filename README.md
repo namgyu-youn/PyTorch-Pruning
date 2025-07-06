@@ -6,7 +6,7 @@ This project aims to **compare variable pruning** techniques for PyTorch based m
 
 [1] TinyML and Efficient Deep Learning Computing (MIT-6.5940, [Lecture](https://hanlab.mit.edu/courses/2024-fall-65940))
 
-[2] A Survey on Deep Neural Network Pruning: Taxonomy, Comparison, Analysis, and Recommendations (IEEE'24)
+[2] A Survey on Deep Neural Network Pruning: Taxonomy, Comparison, Analysis, and Recommendations (IEEE'24, [arXiv](https://arxiv.org/abs/2308.06767))
 
 [3] Pruning Deep Neural Networks from a Sparsity Perspective (ICLR'23, [arXiv](https://arxiv.org/abs/2302.05601))
 
