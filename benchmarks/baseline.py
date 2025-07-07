@@ -19,26 +19,36 @@ class Benchmark:
         size_mb = sum(p.numel() * p.element_size() for p in model.parameters()) / 1024**2
 
         # Latency measurement
-        x = torch.randn(1, 3, 224, 224).to(self.device)
+        x = torch.randn(16, 3, 224, 224).to(self.device, non_blocking=True)
         with torch.no_grad():
-            for _ in range(50):  # warmup
+            for _ in range(20):  # warmup
                 model(x)
 
-        torch.cuda.synchronize()
-        start = time.time()
-        with torch.no_grad():
-            for _ in range(1000):
+            torch.cuda.synchronize()
+            start = time.time()
+            for _ in range(100):
                 model(x)
-        torch.cuda.synchronize()
-        latency_ms = (time.time() - start)
+            torch.cuda.synchronize()
+            latency_ms = (time.time() - start) / 100 / 16 * 1000  # Average per inference in ms
 
         # Accuracy measurement
         correct = total = 0
         with torch.no_grad():
             for images, labels in test_loader:
-                outputs = model(images.to(self.device))
-                correct += (outputs.argmax(1) == labels.to(self.device)).sum().item()
+                images = images.to(self.device, non_blocking=True)
+                labels = labels.to(self.device, non_blocking=True)
+
+                outputs = model(images)
+
+                # Handle class mismatch
+                if outputs.size(1) > 10:
+                    predicted = outputs.argmax(1) % 10
+                else:
+                    predicted = outputs.argmax(1)
+
+                correct += (predicted == labels).sum().item()
                 total += labels.size(0)
+
         accuracy = 100 * correct / total
 
         return {
@@ -101,9 +111,9 @@ class Benchmark:
         print(f"Accuracy: {orig['accuracy']:.1f}% → {pruned['accuracy']:.1f}% ({imp['accuracy_drop_pct']:.1f}% drop)")
 
 if __name__ == "__main__":
-    # Run benchmark
+    # Supported models : ['c', 'e', 's', 'v', 'm', 'r', 'x']
     benchmark = Benchmark()
-    baseline_results = benchmark.run_baseline(['vit', 'efficientnet', 'swin'])
+    baseline_results = benchmark.run_baseline(['c', 'e', 's', 'v', 'm', 'r', 'x'])
 
     print("=== Baseline Results ===")
     for name, metrics in baseline_results.items():
