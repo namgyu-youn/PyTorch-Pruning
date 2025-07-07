@@ -1,14 +1,20 @@
 import torch
 import time
 import torch.profiler
-from data import data_loader
-from models import load_model, MODEL_CONFIGS
+from .data import data_loader
+from .models import load_model, MODEL_CONFIGS
 
 class Benchmark:
     """Post-training pruning benchmark"""
 
     def __init__(self, device='cuda'):
         self.device = device
+
+        # Set deterministic behavior
+        torch.manual_seed(42)
+        torch.cuda.manual_seed(42)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
     def measure_inference(self, model, test_loader):
         """Measure inference metrics"""
@@ -21,15 +27,15 @@ class Benchmark:
         # Latency measurement
         x = torch.randn(16, 3, 224, 224).to(self.device, non_blocking=True)
         with torch.no_grad():
-            for _ in range(20):  # warmup
+            for _ in range(50):  # warmup
                 model(x)
 
             torch.cuda.synchronize()
             start = time.time()
-            for _ in range(100):
+            for _ in range(200):
                 model(x)
             torch.cuda.synchronize()
-            latency_ms = (time.time() - start) / 100 / 16 * 1000  # Average per inference in ms
+            latency_ms = (time.time() - start) / 200 / 16 * 1000  # Average per inference in ms
 
         # Accuracy measurement
         correct = total = 0
@@ -113,7 +119,7 @@ class Benchmark:
 if __name__ == "__main__":
     # Supported models : ['c', 'e', 's', 'v', 'm', 'r', 'x']
     benchmark = Benchmark()
-    baseline_results = benchmark.run_baseline(['c', 'e', 's', 'v', 'm', 'r', 'x'])
+    baseline_results = benchmark.run_baseline()
 
     print("=== Baseline Results ===")
     for name, metrics in baseline_results.items():
