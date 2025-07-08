@@ -1,13 +1,11 @@
 import timm
 
+# TODO : Consider more complicated models like Swin Transformer
 MODEL_CONFIGS = {
     'c': 'convnext_large',
     'e': 'efficientnet_b4',
-    's': 'swin_large_patch4_window7_224',
     'v': 'vit_large_patch16_224',
     'm': 'mobilenetv4_conv_large',
-    'r': 'resnet152d',
-    'x': 'resnext101_32x8d',
 }
 
 def load_model(model_name, device='cuda'):
