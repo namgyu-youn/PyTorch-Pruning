@@ -4,6 +4,7 @@ import torch.profiler
 from .data import data_loader
 from .models import load_model, MODEL_CONFIGS
 
+# TODO : Build `torch.profiler` based benchmark
 class Benchmark:
     """Post-training pruning benchmark"""
 
