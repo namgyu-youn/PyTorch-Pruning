@@ -118,7 +118,7 @@ class Benchmark:
         print(f"Accuracy: {orig['accuracy']:.1f}% → {pruned['accuracy']:.1f}% ({imp['accuracy_drop_pct']:.1f}% drop)")
 
 if __name__ == "__main__":
-    # Supported models : ['c', 'e', 's', 'v', 'm', 'r', 'x']
+    # Supported models : ['c', 'e', 'v', 'm']
     benchmark = Benchmark()
     baseline_results = benchmark.run_baseline()
 
