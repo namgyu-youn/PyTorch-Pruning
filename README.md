@@ -1,10 +1,33 @@
 # PyTorch-Pruning
 
-This project aims to **compare variable pruning** techniques for [timm](https://github.com/huggingface/pytorch-image-models) (computer vision) models. For deepen understanding, we uses multiple-metrics (accuracy & latency), and profiling ([torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)).
+This project aims to **benchmark and profile variable pruning** techniques for [timm](https://github.com/huggingface/pytorch-image-models) (computer vision) models. Therefore, we uses multiple-metrics (accuracy & latency) and profiling ([torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)).
 
-![pruning_taxonomy](images/pruning_taxonomy.png)
+### Main objective
+
+- Add more pruning methodlogy in "[experiments/](https://github.com/namgyu-youn/PyTorch-Pruning/tree/main/experiments)"
+- External users should be able to simply prune and understand it deeply.
+- Each pruning should run within "[benchmarks/baseline](https://github.com/namgyu-youn/PyTorch-Pruning/blob/main/benchmarks/baseline.py)" module for general uses.
+
+## User Guide
+
+This projects recommend `uv` for pypi (python packaging index).
+
+```bash
+# Setup virtual environment
+uv venv
+uv pip install ".[dev]"
+
+# Run scripts
+uv run experiments/pytorch_pruning.py
+```
+
+## Contribution Guide ([Roadmap](https://github.com/namgyu-youn/PyTorch-Pruning/issues/1))
+
+If you have any ideas for this project, please feel free to open Issue/PR. Since our main objective is supporting more pruning, we will always welcome new features.
 
 ## References
+
+![pruning_taxonomy](images/pruning_taxonomy.png)
 
 [[1](https://hanlab.mit.edu/courses/2024-fall-65940)] TinyML and Efficient Deep Learning Computing (MIT-6.5940)
 
@@ -27,3 +50,5 @@ This project aims to **compare variable pruning** techniques for [timm](https://
 [[10](https://arxiv.org/abs/2302.02596)] Ten Lessons We Have Learned in the New "Sparseland": A Short Handbook for Sparse Neural Network Researchers (ICLR'25)
 
 [[11](https://arxiv.org/abs/2301.12900)] Depgraph: Towards any structural pruning (CVPR'23)
+
+[[12](https://paperswithcode.com/task/network-pruning)] Papers with Code : Pruning Benchmark

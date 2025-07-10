@@ -1,12 +1,14 @@
 # Benchmarks Baseline
 
-This section aims to compare Pruning After Training (PAT) techniques in inference level. Since the objective is profiling and deeper understanding, we don't adopt too complicated architecture. For example, windows in Swin Transformer (Swin-T) are hard to being profile.
+This section is the baseline benchmark for comparing Pruning After Training (PAT) techniques in inference level. There are experiments for applying pruning techniques at [here](https://github.com/namgyu-youn/PyTorch-Pruning/tree/main/experiments)
+
+> Since the objective is profiling and deeper understanding, we don't adopt too complicated architecture. For example, windows in Swin Transformer (Swin-T) are hard to being profile.
 
 ### Environments
 
 - Metrics : Model (parameter) size, latency, and accuracy
 - Resources: NVIDIA RTX A2000
-- Models (timm) :
+- Models (`timm`) :
     - CNN based : ConvNeXt, EfficientNet, MobileNet
     - Transformer based : ViT
 

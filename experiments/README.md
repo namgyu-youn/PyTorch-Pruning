@@ -29,4 +29,4 @@ And even more, `torch_pruning` supports Isomorphic pruning ([[6](https://arxiv.o
 
 ## SparseML
 
-[SparseML](https://github.com/neuralmagic/sparseml) open-source library by Neural Magic, and is acquired by Red Hat foundation.
+[SparseML](https://github.com/neuralmagic/sparseml) open-source library by Neural Magic, acquired by Red Hat foundation.
