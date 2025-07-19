@@ -1,12 +1,12 @@
 # PyTorch-Pruning
 
-This project aims to **benchmark and profile variable pruning** techniques for [timm](https://github.com/huggingface/pytorch-image-models) (computer vision) models. Therefore, we uses multiple-metrics (accuracy & latency) and profiling ([torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)).
+This project aims to **benchmark and profile variable pruning** techniques for language models ([LLaMA](https://huggingface.co/huggyllama/llama-7b)) and computer vision ([timm](https://github.com/huggingface/pytorch-image-models)) models. Therefore, we uses multiple-metrics (accuracy & latency) and profiling ([torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)).
 
 ### Main objective
 
 - Add more pruning methodlogy in "[experiments/](https://github.com/namgyu-youn/PyTorch-Pruning/tree/main/experiments)"
 - External users should be able to simply prune and understand it deeply.
-- Each pruning should run within "[benchmarks/baseline](https://github.com/namgyu-youn/PyTorch-Pruning/blob/main/benchmarks/baseline.py)" module for general uses.
+- Each pruning should run within baselines ([computer vision (timm)](https://github.com/namgyu-youn/PyTorch-Pruning/blob/main/benchmarks/vision/baseline.py) & [language models (LLaMA)](https://github.com/namgyu-youn/PyTorch-Pruning/blob/main/benchmarks/llama/baseline.py)) module for fair comparison.
 
 ## User Guide
 
@@ -14,16 +14,17 @@ This projects recommend `uv` for pypi (python packaging index).
 
 ```bash
 # Setup virtual environment
-uv venv
+uv .venv
+source .venv/bin/activate
 uv pip install ".[dev]"
 
-# Run scripts
+# Run any scripts for pruning
 uv run experiments/pytorch_pruning.py
 ```
 
 ## Contribution Guide ([Roadmap](https://github.com/namgyu-youn/PyTorch-Pruning/issues/1))
 
-If you have any ideas for this project, please feel free to open Issue/PR. Since our main objective is supporting more pruning, we will always welcome new features.
+If you have any ideas for this project, please feel free to open Issue or submit PR. Since our main objective is supporting more pruning, we will always welcome new features.
 
 ## References
 
@@ -52,3 +53,5 @@ If you have any ideas for this project, please feel free to open Issue/PR. Since
 [[11](https://arxiv.org/abs/2301.12900)] Depgraph: Towards any structural pruning (CVPR'23)
 
 [[12](https://paperswithcode.com/task/network-pruning)] Papers with Code : Pruning Benchmark
+
+[[13](https://github.com/VITA-Group/SMC-Bench)] Sparsity May Cry Benchmark (SMC-Bench, ICLR'23)
