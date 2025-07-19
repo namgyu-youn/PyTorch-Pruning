@@ -67,7 +67,6 @@ class LLMBenchmark:
         nsamples_test = testenc.numel() // seqlen
 
         nlls = []  # Negative log likelihoods for perplexity calculation
-        loss_fct = torch.nn.CrossEntropyLoss()
 
         with inference_mode(model):
             for i in range(nsamples_test):
@@ -78,7 +77,7 @@ class LLMBenchmark:
                 shift_logits = outputs[:, :-1, :].contiguous()
                 shift_labels = batch[:, 1:]
 
-                loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
+                loss = torch.nn.CrossEntropyLoss()(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
                 nlls.append(loss.float() * seqlen)
 
         # Perplexity (PPL) score
