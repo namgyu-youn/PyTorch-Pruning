@@ -55,7 +55,7 @@ class VitDegraphPruning:
         model = load_model('v', self.device)
         model = self._prune(model, sparsity, methods[method])
 
-        from benchmarks.baseline import Benchmark
+        from benchmarks.vision.baseline import Benchmark
         return Benchmark(self.device).measure_inference(model, data_loader())
 
     def _get_group_importance(self):
@@ -70,8 +70,8 @@ if __name__ == "__main__":
     import sys
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from benchmarks.models import load_model
-    from benchmarks.data import data_loader
+    from benchmarks.vision.models import load_model
+    from benchmarks.vision.data import data_loader
 
     pruning = VitDegraphPruning()
 

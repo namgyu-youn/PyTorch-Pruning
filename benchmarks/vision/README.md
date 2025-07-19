@@ -1,6 +1,6 @@
-# Benchmarks Baseline
+# Computer Vision Benchmarks
 
-This section is the baseline benchmark for comparing Pruning After Training (PAT) techniques in inference level. There are experiments for applying pruning techniques at [here](https://github.com/namgyu-youn/PyTorch-Pruning/tree/main/experiments)
+This section is the benchmark baseline for comparing Pruning After Training (PAT) techniques in inference level. There are experiments for applying pruning techniques at [here](https://github.com/namgyu-youn/PyTorch-Pruning/tree/main/experiments/vision)
 
 > Since the objective is profiling and deeper understanding, we don't adopt too complicated architecture. For example, windows in Swin Transformer (Swin-T) are hard to being profile.
 
@@ -15,6 +15,7 @@ This section is the baseline benchmark for comparing Pruning After Training (PAT
 
 
 # Benchmarks Result
+
 ## Original (not pruned)
 
 ```bash
@@ -24,4 +25,5 @@ e: 17,566,546 params, 12.72ms, 6.0%
 v: 303,311,882 params, 31.07ms, 11.4%
 m: 31,322,674 params, 8.64ms, 11.8%
 ```
+
 > Note: Since `timm` models are pre-trained from ImageNet dataset, accuracy is quiet low.

@@ -8,9 +8,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch.nn as nn
 import torch.nn.utils.prune as prune
-from benchmarks.baseline import Benchmark
-from benchmarks.models import load_model, MODEL_CONFIGS
-from benchmarks.data import data_loader
+from benchmarks.vision.baseline import Benchmark
+from benchmarks.vision.models import load_model, MODEL_CONFIGS
+from benchmarks.vision.data import data_loader
 
 class PytorchPruning:
     """Native PyTorch pruning for Conv2d/Linear layers"""
