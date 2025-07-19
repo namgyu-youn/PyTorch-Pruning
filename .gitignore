@@ -9,7 +9,7 @@ model_cache
 
 # Data
 data/
-*.json
+*.jsonl
 
 # Environment
 env
