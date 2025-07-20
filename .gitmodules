@@ -1,3 +1,6 @@
-[submodule "third_party/sparsegpt"]
-	path = third_party/sparsegpt
+[submodule "sparsegpt"]
+	path = sparsegpt
 	url = https://github.com/IST-DASLab/sparsegpt.git
+[submodule "sparseml"]
+	path = sparseml
+	url = https://github.com/neuralmagic/sparseml.git

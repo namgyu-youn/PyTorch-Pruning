@@ -6,6 +6,7 @@ readme = "README.md"
 keywords = ["deep-learning", "neural-network", "transformers", "pruning"]
 requires-python = ">=3.12"
 dependencies = [
+    "accelerate>=1.9.0",
     "datasets>=3.6.0",
     "huggingface-hub>=0.33.4",
     "numpy>=2.2.6",
