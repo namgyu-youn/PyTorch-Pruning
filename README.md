@@ -1,12 +1,26 @@
 # PyTorch-Pruning
 
-This project aims to **benchmark and profile variable pruning** techniques for language models ([LLaMA](https://huggingface.co/huggyllama/llama-7b)) and computer vision ([timm](https://github.com/huggingface/pytorch-image-models)) models. Therefore, we uses multiple-metrics (accuracy & latency) and profiling ([torch.profiler](https://docs.pytorch.org/tutorials/recipes/recipes/profiler_recipe.html)).
+## Motivation
 
-### Main objective
+Even though there are awesome researches (i.e., Awesome-Pruning; [GitHub](https://github.com/he-y/Awesome-Pruning), [GitHub](https://github.com/hrcheng1066/awesome-pruning)) focused on pruning and sparsity, there are no (maybe... let me know if there are) open-source for fair and comprehensive benchmarks, making first-time users confused. And this made a question, "What is SOTA in the fair environment? More deeply, how can we profile them?"
 
-- Add more pruning methodlogy in "[experiments/](https://github.com/namgyu-youn/PyTorch-Pruning/tree/main/experiments)"
-- External users should be able to simply prune and understand it deeply.
-- Each pruning should run within baselines ([computer vision (timm)](https://github.com/namgyu-youn/PyTorch-Pruning/blob/main/benchmarks/vision/baseline.py) & [language models (LLaMA)](https://github.com/namgyu-youn/PyTorch-Pruning/blob/main/benchmarks/llama/baseline.py)) module for fair comparison.
+## Why can PyTorch-Pruning be a fair benchmark?
+
+Therefore, [PyTorch-Pruning](http://github.com/namgyu-youn/PyTorch-Pruning) mainly focuses on implementing/applying a variable of pruning research, benchmarking, and profiling in a fair baseline.
+
+For example, in the LLaMA benchmarks, we use three evaluation metrics and prompts inspired by Wanda (Sun et al., 2023) and SparseGPT (ICML'23) :
+
+* Model (parameters) size
+* Latency : Time TO First Token (TTFT) and Time Per Output Token (TPOT)
+* Perplexity (PPL) scores : We compute it in same way like [Wanda and SparseGPT](https://github.com/locuslab/wanda/blob/8e8fc87b4a2f9955baa7e76e64d5fce7fa8724a6/lib/prune.py#L214)
+* Input Prompt : We uses `databricks-dolly-15k` like Wanda, SparseGPT
+
+## Contribution Guide
+
+Our main objective (2025-Q3 Roadmap) can be checked at [here](https://github.com/namgyu-youn/PyTorch-Pruning/issues/1). If you have any ideas, feel free to comment, open issue. Every PR should be directly linked to `main` branch.
+
+
+> Since our goal is applying more researches for pruning (sparsity), we are not planning to apply inference engines like ONNX, TensorRT, vLLM, or TorchAO. But applying those engines is definitely a long-term objective, and always welcome!
 
 ## User Guide
 
@@ -21,10 +35,6 @@ uv pip install ".[dev]"
 # Run any scripts for pruning
 uv run experiments/pytorch_pruning.py
 ```
-
-## Contribution Guide ([Roadmap](https://github.com/namgyu-youn/PyTorch-Pruning/issues/1))
-
-If you have any ideas for this project, please feel free to open Issue or submit PR. Since our main objective is supporting more pruning, we will always welcome new features.
 
 ## References
 
