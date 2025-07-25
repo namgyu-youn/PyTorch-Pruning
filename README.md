@@ -65,3 +65,5 @@ uv run experiments/pytorch_pruning.py
 [[12](https://paperswithcode.com/task/network-pruning)] Papers with Code : Pruning Benchmark
 
 [[13](https://github.com/VITA-Group/SMC-Bench)] Sparsity May Cry Benchmark (SMC-Bench, ICLR'23)
+
+[[14](https://github.com/IST-DASLab/sparsegpt)] SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot (ICML'23)
