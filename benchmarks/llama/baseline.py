@@ -11,7 +11,7 @@ from transformers import AutoModelForCausalLM
 from contextlib import contextmanager
 
 # Use SparseGPT's data utils (third-party library)
-sys.path.append('third_party/sparsegpt')
+sys.path.append('sparsegpt')
 from datautils import get_wikitext2, get_tokenizer
 
 @contextmanager
@@ -29,6 +29,15 @@ class BenchmarkResult:
     tpot: float
     latency: float
     perplexity: float
+
+    def print_results(self, title="Benchmark Results"):
+        """Print formatted benchmark results"""
+        print(f"\n=== {title} ===")
+        print(f"Params: {self.params/1e9:.1f}B")
+        print(f"TTFT: {self.ttft:.3f}s")
+        print(f"TPOT: {self.tpot:.3f}s")
+        print(f"Total Latency: {self.latency:.3f}s")
+        print(f"Perplexity: {self.perplexity:.2f}")
 
 class LLMBenchmark:
     """LLM Benchmark class for measuring latency and perplexity of causal language models."""
@@ -130,9 +139,4 @@ if __name__ == "__main__":
     result = benchmark.run_baseline()
 
     if result:
-        print("\n=== LLaMA Baseline ===")
-        print(f"Params: {result.params/1e9:.1f}B")
-        print(f"TTFT: {result.ttft:.3f}s")
-        print(f"TPOT: {result.tpot:.3f}s")
-        print(f"Total Latency: {result.latency:.3f}s")
-        print(f"Perplexity: {result.perplexity:.2f}")
+        result.print_results("LLaMA Baseline")

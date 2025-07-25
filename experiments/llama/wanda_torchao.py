@@ -8,7 +8,7 @@ from torchao.sparsity import WandaSparsifier
 # Add project root to path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 from benchmarks.llama.baseline import LLMBenchmark
-from third_party.sparsegpt.datautils import get_wikitext2, get_tokenizer
+from sparsegpt.datautils import get_wikitext2, get_tokenizer
 
 
 def wanda_pruning(model, tokenizer, sparsity_ratio=0.5):
@@ -44,6 +44,7 @@ def main():
 
     # Baseline
     baseline = benchmark.run_baseline('huggyllama/llama-7b')
+    baseline.print_results("Baseline")
 
     # Wanda pruning
     tokenizer = get_tokenizer('huggyllama/llama-7b')
@@ -53,11 +54,10 @@ def main():
 
     model = wanda_pruning(model, tokenizer, 0.5)
     wanda_result = benchmark.measure_inference(model, tokenizer)
-
     # Benchmark results
-    print(f"Baseline: {baseline.params/1e9:.1f}B params, {baseline.perplexity:.2f} PPL")
-    print(f"Wanda 50%: {wanda_result.params/1e9:.1f}B params, {wanda_result.perplexity:.2f} PPL")
-    print(f"Speedup: {baseline.latency/wanda_result.latency:.2f}x")
+    wanda_result.print_results("Wanda 50%")
+
+    print(f"\nSpeedup: {baseline.latency/wanda_result.latency:.2f}x")
 
 
 if __name__ == "__main__":
